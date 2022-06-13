@@ -14,4 +14,15 @@
         from t_user
         where user_name = #{userName}
     </select>
+
+    <select id="getUserList" resultType="com.example.springdemo.api.v1.entity.UserEntity">
+        SELECT *
+        from t_user
+    </select>
+
+    <update id="updateUser">
+        UPDATE `t_user`
+        SET forbid = #{forbid}
+        WHERE uid = #{uid}
+    </update>
 </mapper>

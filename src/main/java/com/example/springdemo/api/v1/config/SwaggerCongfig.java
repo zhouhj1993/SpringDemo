@@ -2,8 +2,9 @@ package com.example.springdemo.api.v1.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -20,10 +21,11 @@ import springfox.documentation.spring.web.plugins.Docket;
  * 没有该类Swagger也是可以访问的
  */
 @Configuration
-public class SwaggerCongfig extends WebMvcConfigurationSupport {
+@EnableWebMvc
+public class SwaggerCongfig implements WebMvcConfigurer {
 
     public static final String VERSION = "1.0.1";
-    public static final String AUTHOR = "移动端架构师讲师团";
+    public static final String AUTHOR = "SpringBootDemo";
 
     @Bean
     public Docket createRestApi() {
@@ -37,7 +39,8 @@ public class SwaggerCongfig extends WebMvcConfigurationSupport {
                 .build()
                 .ignoredParameterTypes(ApiIgnore.class)
                 .enableUrlTemplating(false)
-                .tags(new Tag("Account", "账号模块"));
+                .tags(new Tag("Account", "账号模块"))
+                .tags(new Tag("Category", "商品类别"));
     }
 
     private ApiInfo apiInfo() {
@@ -45,7 +48,7 @@ public class SwaggerCongfig extends WebMvcConfigurationSupport {
         return new ApiInfoBuilder()
                 //设置文档标题
                 .title("Api文档")
-                .description("移动端架构师成长体系课-API文档")
+                .description("SpringBootDemo-API文档")
                 .version(VERSION)
                 .contact(new Contact(AUTHOR, "www.baicu.com", "xx@qq.com"))
                 .build();
@@ -53,7 +56,8 @@ public class SwaggerCongfig extends WebMvcConfigurationSupport {
 
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
             "classpath:/META-INF/resources/", "classpath:/resources/",
-            "classpath:/static/", "classpath:/public/" };
+            "classpath:/static/", "classpath:/public/"};
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/webjars/**")) {

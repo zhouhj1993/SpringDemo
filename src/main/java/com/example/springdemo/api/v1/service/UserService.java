@@ -19,4 +19,12 @@ public class UserService {
     public List<UserEntity> findUser(String userName) {
         return mUserMapper.findUser(userName);
     }
+
+    public List<UserEntity> getUserList(int pageIndex, int pageSize) {
+        return mUserMapper.getUserList(pageIndex, pageSize);
+    }
+
+    public void updateUser(String uid, String forbid) {
+        mUserMapper.updateUser(uid, forbid);
+    }
 }

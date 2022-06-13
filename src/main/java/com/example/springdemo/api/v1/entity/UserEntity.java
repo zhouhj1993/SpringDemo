@@ -1,6 +1,6 @@
 package com.example.springdemo.api.v1.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -14,6 +14,7 @@ public class UserEntity {
     private String orderId;
     @ApiModelProperty(value = "用户名")
     private String userName;
+    @JsonIgnore
     @ApiModelProperty(value = "密码")
     private String pwd;
     @ApiModelProperty(value = "是否被禁用")

@@ -10,8 +10,12 @@ import java.util.List;
  */
 @Repository
 public interface UserMapper {
-    void addUser(String userName,String password,String imoocId,String orderId,String createTime);
+    void addUser(String userName, String password, String imoocId, String orderId, String createTime);
 
     List<UserEntity> findUser(String userName);
+
+    List<UserEntity> getUserList(int pageIndex, int pageSize);
+
+    void updateUser(String uid, String forbid);
 
 }

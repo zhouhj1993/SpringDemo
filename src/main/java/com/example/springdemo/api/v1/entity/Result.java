@@ -8,12 +8,12 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "响应数据")
 public class Result<T> {
-    @ApiModelProperty(value = "响应数据")
-    private T data;
     @ApiModelProperty(value = "请求是否成功")
     private Boolean success;
     @ApiModelProperty(value = "操作详情")
     private String message;
+    @ApiModelProperty(value = "响应数据")
+    private T data;
 
     private Result(T data, Boolean success, String message) {
         this.data = data;
